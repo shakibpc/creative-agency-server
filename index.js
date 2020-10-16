@@ -107,6 +107,14 @@ app.post('/addService', (req, res) => {
 })
 })
 
+app.post('/isAdmin',(req, res) =>{
+  const email = req.body.email;
+  doctorsCollection.find({ email: email })
+  .toArray((err, doctors) =>{
+    res.send(doctors.length > 0);
+  })
+})
+
 app.get('/showService', (req, res) => {
   serviceCollection.find({email: req.query.email})
   .toArray((err, documents) => {
